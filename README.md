@@ -276,6 +276,36 @@ python ./example/Keyboard_NavigationAgent.py -e UnrealNavigation-Demo_Roof-Mixed
 ```
 Control the agent to navigate to the target location by using the keyboard. 
 
+#### 6. Run Boids-based drone swarms
+Run multi-drone swarms with configurable population size (`N`) and control mode.
+
+Basic usage:
+```
+python ./example/drone_swarm_boids.py --env-id UnrealTrack-track_train-ContinuousColor-v0 --n 10 --mode mission
+```
+
+Supported swarm sizes include `5`, `10`, `30`, and `100` (or any positive integer):
+```
+python ./example/drone_swarm_boids.py --n 30 --mode planned_path
+```
+
+Control modes:
+- `mission`: street-style low-height circling behavior.
+- `planned_path`: follows user-defined waypoints.
+- `gamepad`: interactive teleoperation from gamepad input (if available).
+
+Examples:
+```
+# Low-height street circling mission
+python ./example/drone_swarm_boids.py --mode mission --low-height 1.5 --mission-center "0,0" --mission-radius 18
+
+# Planned path with waypoints (x,y,z points)
+python ./example/drone_swarm_boids.py --mode planned_path --waypoints "0,0,2;20,0,2;20,20,2;0,20,2"
+
+# Gamepad-assisted swarm control
+python ./example/drone_swarm_boids.py --mode gamepad
+```
+
 <table style="width: 100%; text-align: center;">
   <tr>
     <td>
